@@ -1,0 +1,823 @@
+# Complete Data Description - Raw Datasets
+
+Generated on: 2026-03-25
+
+This document describes all CSV datasets found under data/raw/.
+
+## Inventory Summary
+
+- Total CSV files: 22
+
+## 1. comtrade_algeria_exports.csv
+
+- Path: data/raw/comtrade_algeria_exports.csv
+- Description: UN Comtrade exports reported by Algeria (fact table for export flows).
+- Data rows: 3
+- Columns: 47
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - typeCode
+  - freqCode
+  - refPeriodId
+  - refYear
+  - refMonth
+  - period
+  - reporterCode
+  - reporterISO
+  - reporterDesc
+  - flowCode
+  - flowDesc
+  - partnerCode
+  - partnerISO
+  - partnerDesc
+  - partner2Code
+  - partner2ISO
+  - partner2Desc
+  - classificationCode
+  - classificationSearchCode
+  - isOriginalClassification
+  - cmdCode
+  - cmdDesc
+  - aggrLevel
+  - isLeaf
+  - customsCode
+  - customsDesc
+  - mosCode
+  - motCode
+  - motDesc
+  - qtyUnitCode
+  - qtyUnitAbbr
+  - qty
+  - isQtyEstimated
+  - altQtyUnitCode
+  - altQtyUnitAbbr
+  - altQty
+  - isAltQtyEstimated
+  - netWgt
+  - isNetWgtEstimated
+  - grossWgt
+  - isGrossWgtEstimated
+  - cifvalue
+  - fobvalue
+  - primaryValue
+  - legacyEstimationFlag
+  - isReported
+  - isAggregate
+
+## 2. comtrade_world_imports.csv
+
+- Path: data/raw/comtrade_world_imports.csv
+- Description: UN Comtrade world imports (proxy for global demand by product/partner).
+- Data rows: 3
+- Columns: 47
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - typeCode
+  - freqCode
+  - refPeriodId
+  - refYear
+  - refMonth
+  - period
+  - reporterCode
+  - reporterISO
+  - reporterDesc
+  - flowCode
+  - flowDesc
+  - partnerCode
+  - partnerISO
+  - partnerDesc
+  - partner2Code
+  - partner2ISO
+  - partner2Desc
+  - classificationCode
+  - classificationSearchCode
+  - isOriginalClassification
+  - cmdCode
+  - cmdDesc
+  - aggrLevel
+  - isLeaf
+  - customsCode
+  - customsDesc
+  - mosCode
+  - motCode
+  - motDesc
+  - qtyUnitCode
+  - qtyUnitAbbr
+  - qty
+  - isQtyEstimated
+  - altQtyUnitCode
+  - altQtyUnitAbbr
+  - altQty
+  - isAltQtyEstimated
+  - netWgt
+  - isNetWgtEstimated
+  - grossWgt
+  - isGrossWgtEstimated
+  - cifvalue
+  - fobvalue
+  - primaryValue
+  - legacyEstimationFlag
+  - isReported
+  - isAggregate
+
+## 3. Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv
+
+- Path: data/raw/Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv
+- Description: ITC Trade Map list of importing markets for products exported by Algeria.
+- Data rows: 171
+- Columns: 6
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - List of importing markets for a product exported by Algeria
+  - (blank)
+  - (blank)
+  - (blank)
+  - (blank)
+  - (blank)
+
+## 4. API_NY.GDP.MKTP.CD_DS2_en_csv_v2_133326.csv
+
+- Path: data/raw/worldbank/gdp-current-usd/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_133326.csv
+- Description: World Bank WDI indicator panel data by country and year.
+- Data rows: 266
+- Columns: 71
+- Parsing note: encoding=utf-8-sig; header starts at line 5 (World Bank export format)
+- Column names:
+  - Country Name
+  - Country Code
+  - Indicator Name
+  - Indicator Code
+  - 1960
+  - 1961
+  - 1962
+  - 1963
+  - 1964
+  - 1965
+  - 1966
+  - 1967
+  - 1968
+  - 1969
+  - 1970
+  - 1971
+  - 1972
+  - 1973
+  - 1974
+  - 1975
+  - 1976
+  - 1977
+  - 1978
+  - 1979
+  - 1980
+  - 1981
+  - 1982
+  - 1983
+  - 1984
+  - 1985
+  - 1986
+  - 1987
+  - 1988
+  - 1989
+  - 1990
+  - 1991
+  - 1992
+  - 1993
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 2011
+  - 2012
+  - 2013
+  - 2014
+  - 2015
+  - 2016
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - (blank)
+
+## 5. Metadata_Country_API_NY.GDP.MKTP.CD_DS2_en_csv_v2_133326.csv
+
+- Path: data/raw/worldbank/gdp-current-usd/Metadata_Country_API_NY.GDP.MKTP.CD_DS2_en_csv_v2_133326.csv
+- Description: World Bank metadata for countries/aggregates in the corresponding indicator file.
+- Data rows: 265
+- Columns: 6
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - Country Code
+  - Region
+  - IncomeGroup
+  - SpecialNotes
+  - TableName
+  - (blank)
+
+## 6. Metadata_Indicator_API_NY.GDP.MKTP.CD_DS2_en_csv_v2_133326.csv
+
+- Path: data/raw/worldbank/gdp-current-usd/Metadata_Indicator_API_NY.GDP.MKTP.CD_DS2_en_csv_v2_133326.csv
+- Description: World Bank metadata describing the corresponding indicator definition and source.
+- Data rows: 1
+- Columns: 5
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - INDICATOR_CODE
+  - INDICATOR_NAME
+  - SOURCE_NOTE
+  - SOURCE_ORGANIZATION
+  - (blank)
+
+## 7. API_NY.GDP.MKTP.KD.ZG_DS2_en_csv_v2_175549.csv
+
+- Path: data/raw/worldbank/gdp-growth-rate/API_NY.GDP.MKTP.KD.ZG_DS2_en_csv_v2_175549.csv
+- Description: World Bank WDI indicator panel data by country and year.
+- Data rows: 266
+- Columns: 71
+- Parsing note: encoding=utf-8-sig; header starts at line 5 (World Bank export format)
+- Column names:
+  - Country Name
+  - Country Code
+  - Indicator Name
+  - Indicator Code
+  - 1960
+  - 1961
+  - 1962
+  - 1963
+  - 1964
+  - 1965
+  - 1966
+  - 1967
+  - 1968
+  - 1969
+  - 1970
+  - 1971
+  - 1972
+  - 1973
+  - 1974
+  - 1975
+  - 1976
+  - 1977
+  - 1978
+  - 1979
+  - 1980
+  - 1981
+  - 1982
+  - 1983
+  - 1984
+  - 1985
+  - 1986
+  - 1987
+  - 1988
+  - 1989
+  - 1990
+  - 1991
+  - 1992
+  - 1993
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 2011
+  - 2012
+  - 2013
+  - 2014
+  - 2015
+  - 2016
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - (blank)
+
+## 8. Metadata_Country_API_NY.GDP.MKTP.KD.ZG_DS2_en_csv_v2_175549.csv
+
+- Path: data/raw/worldbank/gdp-growth-rate/Metadata_Country_API_NY.GDP.MKTP.KD.ZG_DS2_en_csv_v2_175549.csv
+- Description: World Bank metadata for countries/aggregates in the corresponding indicator file.
+- Data rows: 265
+- Columns: 6
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - Country Code
+  - Region
+  - IncomeGroup
+  - SpecialNotes
+  - TableName
+  - (blank)
+
+## 9. Metadata_Indicator_API_NY.GDP.MKTP.KD.ZG_DS2_en_csv_v2_175549.csv
+
+- Path: data/raw/worldbank/gdp-growth-rate/Metadata_Indicator_API_NY.GDP.MKTP.KD.ZG_DS2_en_csv_v2_175549.csv
+- Description: World Bank metadata describing the corresponding indicator definition and source.
+- Data rows: 1
+- Columns: 5
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - INDICATOR_CODE
+  - INDICATOR_NAME
+  - SOURCE_NOTE
+  - SOURCE_ORGANIZATION
+  - (blank)
+
+## 10. API_NY.GDP.PCAP.CD_DS2_en_csv_v2_46.csv
+
+- Path: data/raw/worldbank/gdp-per-capita/API_NY.GDP.PCAP.CD_DS2_en_csv_v2_46.csv
+- Description: World Bank WDI indicator panel data by country and year.
+- Data rows: 266
+- Columns: 71
+- Parsing note: encoding=utf-8-sig; header starts at line 5 (World Bank export format)
+- Column names:
+  - Country Name
+  - Country Code
+  - Indicator Name
+  - Indicator Code
+  - 1960
+  - 1961
+  - 1962
+  - 1963
+  - 1964
+  - 1965
+  - 1966
+  - 1967
+  - 1968
+  - 1969
+  - 1970
+  - 1971
+  - 1972
+  - 1973
+  - 1974
+  - 1975
+  - 1976
+  - 1977
+  - 1978
+  - 1979
+  - 1980
+  - 1981
+  - 1982
+  - 1983
+  - 1984
+  - 1985
+  - 1986
+  - 1987
+  - 1988
+  - 1989
+  - 1990
+  - 1991
+  - 1992
+  - 1993
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 2011
+  - 2012
+  - 2013
+  - 2014
+  - 2015
+  - 2016
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - (blank)
+
+## 11. Metadata_Country_API_NY.GDP.PCAP.CD_DS2_en_csv_v2_46.csv
+
+- Path: data/raw/worldbank/gdp-per-capita/Metadata_Country_API_NY.GDP.PCAP.CD_DS2_en_csv_v2_46.csv
+- Description: World Bank metadata for countries/aggregates in the corresponding indicator file.
+- Data rows: 265
+- Columns: 6
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - Country Code
+  - Region
+  - IncomeGroup
+  - SpecialNotes
+  - TableName
+  - (blank)
+
+## 12. Metadata_Indicator_API_NY.GDP.PCAP.CD_DS2_en_csv_v2_46.csv
+
+- Path: data/raw/worldbank/gdp-per-capita/Metadata_Indicator_API_NY.GDP.PCAP.CD_DS2_en_csv_v2_46.csv
+- Description: World Bank metadata describing the corresponding indicator definition and source.
+- Data rows: 1
+- Columns: 5
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - INDICATOR_CODE
+  - INDICATOR_NAME
+  - SOURCE_NOTE
+  - SOURCE_ORGANIZATION
+  - (blank)
+
+## 13. API_NE.IMP.GNFS.ZS_DS2_en_csv_v2_192.csv
+
+- Path: data/raw/worldbank/import-of-gdp/API_NE.IMP.GNFS.ZS_DS2_en_csv_v2_192.csv
+- Description: World Bank WDI indicator panel data by country and year.
+- Data rows: 266
+- Columns: 71
+- Parsing note: encoding=utf-8-sig; header starts at line 5 (World Bank export format)
+- Column names:
+  - Country Name
+  - Country Code
+  - Indicator Name
+  - Indicator Code
+  - 1960
+  - 1961
+  - 1962
+  - 1963
+  - 1964
+  - 1965
+  - 1966
+  - 1967
+  - 1968
+  - 1969
+  - 1970
+  - 1971
+  - 1972
+  - 1973
+  - 1974
+  - 1975
+  - 1976
+  - 1977
+  - 1978
+  - 1979
+  - 1980
+  - 1981
+  - 1982
+  - 1983
+  - 1984
+  - 1985
+  - 1986
+  - 1987
+  - 1988
+  - 1989
+  - 1990
+  - 1991
+  - 1992
+  - 1993
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 2011
+  - 2012
+  - 2013
+  - 2014
+  - 2015
+  - 2016
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - (blank)
+
+## 14. Metadata_Country_API_NE.IMP.GNFS.ZS_DS2_en_csv_v2_192.csv
+
+- Path: data/raw/worldbank/import-of-gdp/Metadata_Country_API_NE.IMP.GNFS.ZS_DS2_en_csv_v2_192.csv
+- Description: World Bank metadata for countries/aggregates in the corresponding indicator file.
+- Data rows: 265
+- Columns: 6
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - Country Code
+  - Region
+  - IncomeGroup
+  - SpecialNotes
+  - TableName
+  - (blank)
+
+## 15. Metadata_Indicator_API_NE.IMP.GNFS.ZS_DS2_en_csv_v2_192.csv
+
+- Path: data/raw/worldbank/import-of-gdp/Metadata_Indicator_API_NE.IMP.GNFS.ZS_DS2_en_csv_v2_192.csv
+- Description: World Bank metadata describing the corresponding indicator definition and source.
+- Data rows: 1
+- Columns: 5
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - INDICATOR_CODE
+  - INDICATOR_NAME
+  - SOURCE_NOTE
+  - SOURCE_ORGANIZATION
+  - (blank)
+
+## 16. API_SP.POP.TOTL_DS2_en_csv_v2_61.csv
+
+- Path: data/raw/worldbank/population/API_SP.POP.TOTL_DS2_en_csv_v2_61.csv
+- Description: World Bank WDI indicator panel data by country and year.
+- Data rows: 266
+- Columns: 71
+- Parsing note: encoding=utf-8-sig; header starts at line 5 (World Bank export format)
+- Column names:
+  - Country Name
+  - Country Code
+  - Indicator Name
+  - Indicator Code
+  - 1960
+  - 1961
+  - 1962
+  - 1963
+  - 1964
+  - 1965
+  - 1966
+  - 1967
+  - 1968
+  - 1969
+  - 1970
+  - 1971
+  - 1972
+  - 1973
+  - 1974
+  - 1975
+  - 1976
+  - 1977
+  - 1978
+  - 1979
+  - 1980
+  - 1981
+  - 1982
+  - 1983
+  - 1984
+  - 1985
+  - 1986
+  - 1987
+  - 1988
+  - 1989
+  - 1990
+  - 1991
+  - 1992
+  - 1993
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 2011
+  - 2012
+  - 2013
+  - 2014
+  - 2015
+  - 2016
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - (blank)
+
+## 17. Metadata_Country_API_SP.POP.TOTL_DS2_en_csv_v2_61.csv
+
+- Path: data/raw/worldbank/population/Metadata_Country_API_SP.POP.TOTL_DS2_en_csv_v2_61.csv
+- Description: World Bank metadata for countries/aggregates in the corresponding indicator file.
+- Data rows: 265
+- Columns: 6
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - Country Code
+  - Region
+  - IncomeGroup
+  - SpecialNotes
+  - TableName
+  - (blank)
+
+## 18. Metadata_Indicator_API_SP.POP.TOTL_DS2_en_csv_v2_61.csv
+
+- Path: data/raw/worldbank/population/Metadata_Indicator_API_SP.POP.TOTL_DS2_en_csv_v2_61.csv
+- Description: World Bank metadata describing the corresponding indicator definition and source.
+- Data rows: 1
+- Columns: 5
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - INDICATOR_CODE
+  - INDICATOR_NAME
+  - SOURCE_NOTE
+  - SOURCE_ORGANIZATION
+  - (blank)
+
+## 19. API_TG.VAL.TOTL.GD.ZS_DS2_en_csv_v2_7119.csv
+
+- Path: data/raw/worldbank/trade-percentage-of-gdp/API_TG.VAL.TOTL.GD.ZS_DS2_en_csv_v2_7119.csv
+- Description: World Bank WDI indicator panel data by country and year.
+- Data rows: 266
+- Columns: 71
+- Parsing note: encoding=utf-8-sig; header starts at line 5 (World Bank export format)
+- Column names:
+  - Country Name
+  - Country Code
+  - Indicator Name
+  - Indicator Code
+  - 1960
+  - 1961
+  - 1962
+  - 1963
+  - 1964
+  - 1965
+  - 1966
+  - 1967
+  - 1968
+  - 1969
+  - 1970
+  - 1971
+  - 1972
+  - 1973
+  - 1974
+  - 1975
+  - 1976
+  - 1977
+  - 1978
+  - 1979
+  - 1980
+  - 1981
+  - 1982
+  - 1983
+  - 1984
+  - 1985
+  - 1986
+  - 1987
+  - 1988
+  - 1989
+  - 1990
+  - 1991
+  - 1992
+  - 1993
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 2011
+  - 2012
+  - 2013
+  - 2014
+  - 2015
+  - 2016
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - (blank)
+
+## 20. Metadata_Country_API_TG.VAL.TOTL.GD.ZS_DS2_en_csv_v2_7119.csv
+
+- Path: data/raw/worldbank/trade-percentage-of-gdp/Metadata_Country_API_TG.VAL.TOTL.GD.ZS_DS2_en_csv_v2_7119.csv
+- Description: World Bank metadata for countries/aggregates in the corresponding indicator file.
+- Data rows: 265
+- Columns: 6
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - Country Code
+  - Region
+  - IncomeGroup
+  - SpecialNotes
+  - TableName
+  - (blank)
+
+## 21. Metadata_Indicator_API_TG.VAL.TOTL.GD.ZS_DS2_en_csv_v2_7119.csv
+
+- Path: data/raw/worldbank/trade-percentage-of-gdp/Metadata_Indicator_API_TG.VAL.TOTL.GD.ZS_DS2_en_csv_v2_7119.csv
+- Description: World Bank metadata describing the corresponding indicator definition and source.
+- Data rows: 1
+- Columns: 5
+- Parsing note: encoding=utf-8-sig
+- Column names:
+  - INDICATOR_CODE
+  - INDICATOR_NAME
+  - SOURCE_NOTE
+  - SOURCE_ORGANIZATION
+  - (blank)
+
+## 22. WtoData_20260325191317.csv
+
+- Path: data/raw/wto_algeria/WtoData_20260325191317.csv
+- Description: WTO trade dataset extract for Algeria and/or related trade indicators.
+- Data rows: 450
+- Columns: 24
+- Parsing note: encoding=cp1252
+- Column names:
+  - Indicator Category
+  - Indicator Code
+  - Indicator
+  - Reporting Economy Code
+  - Reporting Economy ISO3A Code
+  - Reporting Economy
+  - Partner Economy Code
+  - Partner Economy ISO3A Code
+  - Partner Economy
+  - Product/Sector Classification Code
+  - Product/Sector Classification
+  - Product/Sector Code
+  - Product/Sector
+  - Period Code
+  - Period
+  - Frequency Code
+  - Frequency
+  - Unit Code
+  - Unit
+  - Year
+  - Value Flag Code
+  - Value Flag
+  - Text Value
+  - Value
