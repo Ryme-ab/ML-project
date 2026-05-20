@@ -115,7 +115,7 @@ algerian-export-ml/
       DATA_DESCRIPTION.md
       comtrade_algeria_exports.csv
       comtrade_world_imports.csv
-      Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv
+      trade_map/
       worldbank/
       wto_algeria/
     interim/

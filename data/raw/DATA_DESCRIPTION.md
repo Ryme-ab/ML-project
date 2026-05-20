@@ -4,9 +4,11 @@ Generated on: 2026-03-25
 
 This document describes all CSV datasets found under data/raw/.
 
+Note: spreadsheet exports under data/raw/trade_map/ are present in the repository but are not included in this CSV inventory.
+
 ## Inventory Summary
 
-- Total CSV files: 22
+- Total CSV files: 21
 
 ## 1. comtrade_algeria_exports.csv
 
@@ -120,20 +122,38 @@ This document describes all CSV datasets found under data/raw/.
   - isReported
   - isAggregate
 
-## 3. Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv
+## 3. WtoData_20260325191317.csv
 
-- Path: data/raw/Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv
-- Description: ITC Trade Map list of importing markets for products exported by Algeria.
-- Data rows: 171
-- Columns: 6
-- Parsing note: encoding=utf-8-sig
+- Path: data/raw/wto_algeria/WtoData_20260325191317.csv
+- Description: WTO trade dataset extract for Algeria and/or related trade indicators.
+- Data rows: 450
+- Columns: 24
+- Parsing note: encoding=cp1252
 - Column names:
-  - List of importing markets for a product exported by Algeria
-  - (blank)
-  - (blank)
-  - (blank)
-  - (blank)
-  - (blank)
+  - Indicator Category
+  - Indicator Code
+  - Indicator
+  - Reporting Economy Code
+  - Reporting Economy ISO3A Code
+  - Reporting Economy
+  - Partner Economy Code
+  - Partner Economy ISO3A Code
+  - Partner Economy
+  - Product/Sector Classification Code
+  - Product/Sector Classification
+  - Product/Sector Code
+  - Product/Sector
+  - Period Code
+  - Period
+  - Frequency Code
+  - Frequency
+  - Unit Code
+  - Unit
+  - Year
+  - Value Flag Code
+  - Value Flag
+  - Text Value
+  - Value
 
 ## 4. API_NY.GDP.MKTP.CD_DS2_en_csv_v2_133326.csv
 
@@ -789,35 +809,3 @@ This document describes all CSV datasets found under data/raw/.
   - SOURCE_ORGANIZATION
   - (blank)
 
-## 22. WtoData_20260325191317.csv
-
-- Path: data/raw/wto_algeria/WtoData_20260325191317.csv
-- Description: WTO trade dataset extract for Algeria and/or related trade indicators.
-- Data rows: 450
-- Columns: 24
-- Parsing note: encoding=cp1252
-- Column names:
-  - Indicator Category
-  - Indicator Code
-  - Indicator
-  - Reporting Economy Code
-  - Reporting Economy ISO3A Code
-  - Reporting Economy
-  - Partner Economy Code
-  - Partner Economy ISO3A Code
-  - Partner Economy
-  - Product/Sector Classification Code
-  - Product/Sector Classification
-  - Product/Sector Code
-  - Product/Sector
-  - Period Code
-  - Period
-  - Frequency Code
-  - Frequency
-  - Unit Code
-  - Unit
-  - Year
-  - Value Flag Code
-  - Value Flag
-  - Text Value
-  - Value
