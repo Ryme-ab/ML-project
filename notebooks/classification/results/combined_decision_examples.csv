@@ -1,0 +1,6 @@
+Importer_Name,Importer_ISO3,Product_Code,Product_Name,Importer_Demand_T,Algeria_Share_in_Importer_T,prob_High,Decision_Example
+Germany,DEU,210500,"Ice cream and other edible ice, whether or not containing cocoa.",492931.2,0.0,0.99986005,"Target Germany for Ice cream and other edible ice, whether or not containing cocoa. due to demand 492,931 and low share."
+United States,USA,070960,-Fruits of the genus Capsicum or of the genus Pimenta,2031307.6,0.0,0.99985826,"Target United States for -Fruits of the genus Capsicum or of the genus Pimenta due to demand 2,031,308 and low share."
+Germany,DEU,080430,-Pineapples,78951.375,0.0,0.9998486,"Target Germany for -Pineapples due to demand 78,951 and low share."
+Germany,DEU,070960,-Fruits of the genus Capsicum or of the genus Pimenta,914591.0,0.0,0.9998474,"Target Germany for -Fruits of the genus Capsicum or of the genus Pimenta due to demand 914,591 and low share."
+Germany,DEU,070200,"Tomatoes, fresh or chilled.",1546312.0,0.0,0.99984,"Target Germany for Tomatoes, fresh or chilled. due to demand 1,546,312 and low share."
