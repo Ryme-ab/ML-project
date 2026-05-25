@@ -19,14 +19,14 @@ An end-to-end machine learning and analytics project focused on Algerian exports
 The project currently integrates raw CSV files from:
 
 - UN Comtrade
-	- `data/raw/comtrade_algeria_exports.csv`
-	- `data/raw/comtrade_world_imports.csv`
+  - `data/raw/comtrade_algeria_exports.csv`
+  - `data/raw/comtrade_world_imports.csv`
 - ITC Trade Map
-	- `data/raw/Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv`
+  - `data/raw/Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv`
 - WTO
-	- `data/raw/wto_algeria/WtoData_20260325191317.csv`
+  - `data/raw/wto_algeria/WtoData_20260325191317.csv`
 - World Bank (WDI indicators + metadata)
-	- `data/raw/worldbank/...`
+  - `data/raw/worldbank/...`
 
 For complete per-file schema and column lists, see:
 
