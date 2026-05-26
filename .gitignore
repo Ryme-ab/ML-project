@@ -19,3 +19,6 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+
+# Specific files
+notebooks/clustring/kernel-metadata.json
