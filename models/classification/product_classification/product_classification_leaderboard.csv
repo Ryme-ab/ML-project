@@ -1,0 +1,7 @@
+,macro_f1,accuracy
+XGBoost,0.7209,0.7237
+LightGBM,0.7197,0.7227
+Keras MLP,0.7193,0.7215
+RandomForest,0.7192,0.7229
+LinearSVM,0.6885,0.6981
+Persistence,0.5245,0.5248

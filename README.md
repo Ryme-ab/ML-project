@@ -13,6 +13,15 @@ The system integrates multiple international trade datasets, applies clustering,
 ### Time Range
 
 2010 - 2023 (14 years)
+- UN Comtrade
+  - `data/raw/comtrade_algeria_exports.csv`
+  - `data/raw/comtrade_world_imports.csv`
+- ITC Trade Map
+  - `data/raw/Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv`
+- WTO
+  - `data/raw/wto_algeria/WtoData_20260325191317.csv`
+- World Bank (WDI indicators + metadata)
+  - `data/raw/worldbank/...`
 
 - 2010-2019: pre-crisis baseline
 - 2020-2021: COVID-19 disruption period
