@@ -1,419 +1,228 @@
-# Algerian Export ML Project
+# Algerian Export ML
 
-## Project Overview
+Comprehensive end-to-end toolkit for analyzing Algerian exports and identifying product/market opportunities using trade (COMTRADE/WTO) and macroeconomic (World Bank) data.
 
-Algeria's export economy is heavily concentrated in hydrocarbons, which accounted for approximately 92% of total exports in 2023. This project builds an end-to-end machine learning system that identifies, analyzes, and forecasts international export opportunities for Algerian exporters across agriculture, industry, and services sectors.
+This repository contains data ingestion scripts and notebooks, preprocessing and feature engineering, modeling experiments (clustering & classification), model artifacts, a small dashboard integration, and helper scripts for loading results into databases.
 
-The system integrates multiple international trade datasets, applies clustering, classification, and forecasting models, and delivers insights through an interactive visualization dashboard aimed at supporting the Algerian Chamber of Commerce and Industry (CACI), the Ministry of External Commerce, exporters, and policymakers.
+Table of Contents
+-----------------
+- Project overview
+- Quickstart
+- Repository structure
+- Data (raw → processed)
+- Notebooks
+- Models & experiments
+- Dashboard
+- Installation & environment
+- Usage: prepare, run, evaluate
+- Docker
+- Testing & validation
+- Troubleshooting
+- Contributing
+- License & contact
 
----
+Project overview
+----------------
+Algerian Export ML builds reproducible pipelines and notebooks to:
 
-## Project Scope
+- Ingest raw trade and macroeconomic data into `data/raw/`.
+- Clean, normalize, and produce feature-engineered CSVs in `data/processed/`.
+- Train clustering and classification models that identify product and market opportunities.
+- Produce visual reports and a dashboard for stakeholder consumption.
 
-### Time Range
-
-2010 - 2023 (14 years)
-- UN Comtrade
-  - `data/raw/comtrade_algeria_exports.csv`
-  - `data/raw/comtrade_world_imports.csv`
-- ITC Trade Map
-  - `data/raw/Trade_Map_-_List_of_importing_markets_for_a_product_exported_by_Algeria (1).csv`
-- WTO
-  - `data/raw/wto_algeria/WtoData_20260325191317.csv`
-- World Bank (WDI indicators + metadata)
-  - `data/raw/worldbank/...`
-
-- 2010-2019: pre-crisis baseline
-- 2020-2021: COVID-19 disruption period
-- 2022-2023: recovery period and most recent trends
-
-### Target Countries (Partner List)
-
-Algeria's current top export destinations plus major importers of Algeria's target products.
-Final list target: approximately 25-30 countries.
-
-Current Algerian export partners:
-
-- France
-- Italy
-- Spain
-- United Kingdom
-- United States
-- Turkey
-- Brazil
-- Netherlands
-- Belgium
-- Germany
-- China
-- Switzerland
-- India
-- Portugal
-- Morocco
-
-Strategic target markets (high import demand for Algeria's potential products):
-
-- Saudi Arabia
-- UAE
-- Egypt
-- Senegal
-- Cote d'Ivoire
-- Canada
-- Japan
-- South Korea
-- Poland
-- Czech Republic
-
-### Product Scope
-
-Work is performed at HS2 level for the full dataset and drills down to HS6 for priority products.
-
-Priority HS sections:
-
-| HS Code | Description |
-|---------|-------------|
-| HS07 | Edible vegetables (including dates) |
-| HS08 | Edible fruit (citrus, figs) |
-| HS15 | Animal/vegetable fats and oils (olive oil) |
-| HS19 | Preparations of cereals, pastry |
-| HS21 | Miscellaneous edible preparations |
-| HS25 | Salt, sulphur, earth, stone (construction) |
-| HS28 | Inorganic chemicals |
-| HS31 | Fertilizers |
-| HS68 | Articles of stone, plaster, cement |
-| HS72 | Iron and steel |
-
-### Reporter Country
-
-- Country: Algeria
-- ISO3 code: DZA
-- UN Comtrade numeric code: 12
-
----
-
-## Data Sources
-
-| Source | What we use it for | Access |
-|--------|---------------------|--------|
-| UN Comtrade | Export/import values by product, country, year | Free API (100 req/hour) - comtrade.un.org |
-| World Bank WITS | GDP, trade openness, economic indicators | Free API - wits.worldbank.org |
-| WTO Statistics | Aggregate trade statistics, tariff data | Free CSV download - data.wto.org |
-| ITC Trade Map | Cross-validation of trade flows | Manual CSV export - trademap.org |
-
-### Data Access Notes
-
-- UN Comtrade requires registration and an API subscription key. Store key in `.env` and never commit it.
-- World Bank API is open and requires no key.
-- ITC Trade Map may require institutional registration.
-- All data used is public and compliant with data privacy requirements.
-
----
-
-## Current Repository Structure
-
-This is the active structure in this repository.
-
-```text
-algerian-export-ml/
-  README.md
-  requirements.txt
-  .gitignore
-
-  dashboard/
-  data/
-    raw/
-      DATA_DESCRIPTION.md
-      comtrade_algeria_exports.csv
-      comtrade_world_imports.csv
-      trade_map/
-      worldbank/
-      wto_algeria/
-    interim/
-    processed/
-
-  models/
-
-  notebooks/
-    preporocessing/
-      01_load_comtrade-checkpoint.ipynb
-      02_load_worldbank-checkpoint.ipynb
-      03_load_wto_trademap-checkpoint.ipynb
-      04_master_integration-checkpoint.ipynb
-    eda/
-    forecasting/
-    classification/
-    clustring/
-
-  reports/
-
-  src/
-    data/
-    features/
-    models/
-    visualization/
-```
-
-Note: folder names `preporocessing` and `clustring` are kept as-is to match the current repository.
-
-### Target Structure (Team Convention)
-
-The team can progressively align toward the following production structure:
-
-```text
-project-root/
-|
-|-- README.md
-|-- DATA_CONTRACT.md
-|-- requirements.txt
-|-- .env.example
-|-- .gitignore
-|
-|-- data/
-|   |-- raw/
-|   |   |-- comtrade/
-|   |   |-- worldbank/
-|   |   |-- wto/
-|   |   `-- trademap/
-|   `-- processed/
-|       |-- master_trade.parquet
-|       |-- features.parquet
-|       `-- labels.parquet
-|
-|-- notebooks/
-|   |-- 00_data_collection/
-|   |-- 01_preprocessing/
-|   |-- 02_eda/
-|   |-- 03_clustering/
-|   |-- 04_classification/
-|   `-- 05_forecasting/
-|
-|-- models/
-|   |-- clustering/
-|   |-- classification/
-|   `-- forecasting/
-|
-|-- outputs/
-|   |-- opportunity_ranking.csv
-|   |-- cluster_assignments.csv
-|   `-- forecasts.csv
-|
-|-- pipeline/
-|   `-- run_pipeline.py
-|
-|-- dashboard/
-|   |-- grafana/
-|   |   |-- dashboard.json
-|   |   `-- datasource.yaml
-|   `-- sql/
-|       |-- create_tables.sql
-|       `-- queries/
-|
-`-- reports/
-    |-- 01_introduction.md
-    |-- 02_data_methodology.md
-    |-- 03_feature_engineering.md
-    |-- 04_clustering_results.md
-    |-- 05_classification_results.md
-    |-- 06_forecasting_results.md
-    |-- 07_dashboard.md
-    |-- 08_limitations.md
-    `-- 09_conclusion.md
-```
-
----
-
-## Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Ryme-ab/ML-project.git
-cd ML-project/algerian-export-ml
-```
-
-### 2. Create and activate a virtual environment
+Quickstart
+----------
+1. Create and activate a Python virtual environment, then install dependencies:
 
 ```bash
 python -m venv venv
-
-# Linux/Mac
-source venv/bin/activate
-
-# Windows
-venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
+venv\Scripts\activate   # Windows
 pip install -r requirements.txt
 ```
 
-### 4. Set up environment variables
-
-```bash
-cp .env.example .env
-# Then open .env and fill in API keys
-```
-
-Windows PowerShell alternative:
+2. Inspect or set credentials (if required). If your project uses environment variables, copy and edit the template:
 
 ```powershell
-Copy-Item .env.example .env
+copy .env.example .env
+# edit .env to add COMTRADE_API_KEY, database URL, etc.
 ```
 
-### 5. Create raw data directories (if needed)
+3. Prepare data either by running the preprocessing notebooks in order or by running the scripted pipeline (if available):
 
 ```bash
-mkdir -p data/raw/comtrade data/raw/worldbank data/raw/wto data/raw/trademap
+# Option A: run notebooks interactively
+jupyter lab
+# open and run notebooks in notebooks/preprocessing/ in order: 01 → 02 → 03 → 04
+
+# Option B: run scripts (if provided)
+# python src/pipeline/run_pipeline.py
 ```
 
-Windows PowerShell alternative:
-
-```powershell
-New-Item -ItemType Directory -Force -Path data/raw/comtrade, data/raw/worldbank, data/raw/wto, data/raw/trademap
-```
-
-### 6. Launch Jupyter
+4. Load processed outputs into Postgres (optional):
 
 ```bash
-jupyter notebook
+python import_to_postgres.py
 ```
 
----
+Repository structure
+--------------------
+Top-level layout (key folders & files):
 
-## Environment Variables
+- `data/` — raw, interim and processed CSVs
+    - `data/raw/` — original downloads (COMTRADE, WTO, WorldBank raw exports)
+    - `data/interim/` — intermediate artifacts
+    - `data/processed/` — cleaned and feature-engineered CSVs (master tables)
+        - Example: [data/processed/04_master_country_year.csv](data/processed/04_master_country_year.csv)
+        - Example: [data/processed/04_master_sector_year.csv](data/processed/04_master_sector_year.csv)
+        - Example: [data/processed/02_worldbank_features.csv](data/processed/02_worldbank_features.csv)
 
-Create a `.env` file at the project root and never commit it.
+- `notebooks/` — Jupyter notebooks for preprocessing, experiments, and reports
+    - `notebooks/preprocessing/01_data_loading_and_cleaning.ipynb`
+    - `notebooks/preprocessing/02_feature_engineering.ipynb`
+    - `notebooks/preprocessing/03_scaling_and_normalization.ipynb`
+    - `notebooks/preprocessing/04_master_integration_and_eda.ipynb`
+    - `notebooks/classification/` — product & market classification experiments
+    - `notebooks/clustring/` — clustering experiments
 
-```env
-COMTRADE_API_KEY=your_key_here
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=algerian_exports
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-```
+- `src/` — python modules and helper scripts (data ingestion, feature builders, model wrappers)
 
----
+- `models/` — saved model artifacts and training outputs
 
-## Data Contract
+- `dashboard/` — dashboard configuration, queries, and visualization assets
 
-All team members must read `DATA_CONTRACT.md` before writing preprocessing or modeling code.
+- `docker/` — `docker-compose.yml` for local services (db, optional notebook server)
+    - `docker/docker-compose.yml`
 
-The data contract defines the exact schema of processed data that data engineers produce and ML engineers consume, including column names, types, units, missing-value policy, and country code standards.
+- root scripts & files:
+    - [import_to_postgres.py](import_to_postgres.py) — helper to push processed CSVs to Postgres
+    - [test_db.py](test_db.py) — lightweight DB connectivity/validation script
+    - `requirements.txt` — Python dependencies
+    - `detailed-report.txt` — auto-generated summary of processed CSVs (headers & samples)
 
-Key rules:
+Data: raw → processed
+----------------------
+Overview:
 
-- All monetary values are in USD (raw units).
-- Country codes use ISO 3166-1 alpha-3 throughout (example: DZA, FRA, CHN).
-- Missing values are `NaN` and never represented as zero or empty string.
-- Trade flow values of 0 represent real zero trade, not missing data.
+- Raw sources live in `data/raw/` (COMTRADE, WTO, WorldBank, HS references).
+- `notebooks/preprocessing/` and `src/data/` contain ingestion code to convert raw downloads into cleaned CSVs.
+- Processed outputs are placed in `data/processed/` and are the canonical inputs for modeling and the dashboard.
 
----
+Important processed files (examples):
 
-## Git Workflow
+- [data/processed/01_wto_cleaned.csv](data/processed/01_wto_cleaned.csv)
+- [data/processed/02_worldbank_features.csv](data/processed/02_worldbank_features.csv)
+- [data/processed/02_wto_demand_features.csv](data/processed/02_wto_demand_features.csv)
+- [data/processed/03_diversification_scaled.csv](data/processed/03_diversification_scaled.csv)
+- [data/processed/04_master_country_year.csv](data/processed/04_master_country_year.csv)
+- [data/processed/04_master_sector_year.csv](data/processed/04_master_sector_year.csv)
 
-### Branch Naming
+Notebooks
+---------
+Notebooks are organized by task. Recommended workflow:
 
-```text
-main                          demo-ready, team lead merges only
-feature/data-collection       API scripts, raw downloaders
-feature/data-pipeline         cleaning, merging, feature engineering
-feature/eda                   exploratory analysis notebooks
-feature/clustering            clustering model and notebook
-feature/classification        classification model and notebook
-feature/forecasting           forecasting model and notebook
-feature/dashboard             Grafana config, DB setup, SQL
-docs/report                   final report sections
-```
+1. Run `01_data_loading_and_cleaning.ipynb` to populate `data/interim/` and `data/processed/`.
+2. Run `02_feature_engineering.ipynb` to create derived features.
+3. Run `03_scaling_and_normalization.ipynb` to produce scaled versions.
+4. Run `04_master_integration_and_eda.ipynb` to merge master tables and run EDA.
 
-### Start Working
+Models & experiments
+--------------------
+- Clustering experiments: `notebooks/clustring/` produce cluster assignments used for market segmentation.
+- Classification experiments: `notebooks/classification/` train models to identify opportunity-level labels.
+- Model artifacts are saved under `models/` using folder conventions like `models/<experiment>/<checkpoint>/`.
+
+Training & inference (example)
 
 ```bash
-git checkout main
-git pull origin main
-git checkout feature/your-branch
-git pull origin feature/your-branch
-# do your work
-git add .
-git commit -m "Add clear and specific commit message"
-git push origin feature/your-branch
+# train a model (example wrapper — replace with actual script)
+python src/models/train.py --config config/train_product_classifier.yaml
+
+# run inference on processed features
+python src/models/predict.py --model models/product_classifier/2025-01-01 --input data/processed/04_master_sector_year.csv --output results/predictions.csv
 ```
 
-### Merge to main
+Dashboard
+---------
+The `dashboard/` folder contains SQL and visualization config used to feed a BI tool. Use the processed CSVs or load them into Postgres (see below) for dashboarding.
 
-1. Open a pull request from feature branch into `main`.
-2. Add a concise change summary.
-3. Team lead reviews and approves.
-4. Team lead merges.
-
-### Commit Message Rules
-
-- Use present tense.
-- Be specific and scoped.
-- Avoid generic messages such as `update`, `changes`, or `wip`.
-
-### Keep Branch Updated
+Running with Docker (optional)
+-----------------------------
+A docker-compose is provided to run supporting services (e.g., Postgres) locally.
 
 ```bash
-git checkout feature/your-branch
-git merge main
+cd docker
+
 ```
 
----
+After DB is up, run:
 
-## Machine Learning Tasks
+```bash
+python import_to_postgres.py
+python test_db.py
+```
 
-### Task 1 - Clustering
+Installation & environment
+--------------------------
+1. Create virtual environment (see Quickstart).
+2. Install dependencies: `pip install -r requirements.txt`.
+3. (Optional) Use `pip install -e .` if the repo exposes a package entrypoint.
 
-Goal: group countries by import-demand profile to identify coherent market segments.
+Usage: prepare, run, evaluate
+------------------------------
+- Prepare: ensure `data/raw/` contains the raw downloads or run ingestion scripts.
+- Run: execute preprocessing notebooks or pipeline scripts in order.
+- Load: use `python import_to_postgres.py` to push processed CSVs to Postgres.
+- Evaluate: use notebooks in `notebooks/*` and `reports/` to reproduce analysis and figures.
 
-- Algorithms: K-Means and/or Agglomerative Hierarchical Clustering
-- Features: global demand index, trade growth rate, market-size vectors per product
-- Evaluation: Silhouette Score, Davies-Bouldin Index
-- Output: `cluster_assignments.csv` (country to cluster ID)
+Testing & validation
+--------------------
+- `test_db.py` contains simple connectivity checks. Run it after starting the DB:
 
-### Task 2 - Classification
+```bash
+python test_db.py
+```
 
-Goal: label each country-product pair as high, medium, or low export opportunity.
+- Use pandas checks (row counts, dtype assertions) to validate processed files. Example snippet is available in `detailed-report.txt`.
 
-- Algorithms: XGBoost or Random Forest
-- Label definition:
-  - High: market penetration ratio < 5% and global demand growth > 10% and product in Algeria export capacity
-  - Medium: market penetration ratio < 15% and demand growth > 5%
-  - Low: all other pairs
-- Evaluation: Accuracy, Precision, Recall, F1-score (macro and per class)
-- Output: `opportunity_ranking.csv` (pair ranking with predicted class and confidence)
+Troubleshooting
+---------------
+- If notebooks fail due to missing packages, confirm `requirements.txt` and virtual environment activation.
+- If ingestion scripts fail, verify API keys and the presence of expected raw files.
+- For Postgres connection errors, check `docker/docker-compose.yml` and environment variables in `.env`.
 
-### Task 3 - Forecasting
+Contributing
+------------
+- Use feature branches `feature/<short-desc>` and open a pull request describing changes.
+- Keep notebooks deterministic: clear outputs before committing, and include executed checkpoints in `notebooks/*/results` when necessary.
+- Add unit tests or validation scripts under `src/tests/` when adding new processing logic.
 
-Goal: predict future trade volume and value by product-country pair.
+License & contact
+-----------------
+Check for a `LICENSE` file in the repository root. If none exists and you plan to publish, add an appropriate license (MIT/Apache-2.0 etc.).
 
-- Algorithms: ARIMA baseline, Prophet, and optionally gradient boosting with lag features
-- Split: 2010-2019 train, 2020-2021 validation, 2022-2023 test
-- Evaluation: MAE, RMSE, MAPE
-- Output: `forecasts.csv` with confidence intervals
+Maintainer / Contact
+- Primary maintainer: repository owner (see GitHub repo settings and collaborators).
 
----
+Acknowledgements
+----------------
+Data sources: UN COMTRADE, WTO, and World Bank public datasets. HS reference tables are included under `data/raw/hs_reference/`.
 
-## Dashboard
+Change log
+----------
+See git history for changes. For major updates, consider adding release notes under `reports/`.
 
-- Tool: Grafana (recommended) or Apache Superset
-- Database: PostgreSQL
-- Data flow: dashboard reads PostgreSQL tables populated by `pipeline/run_pipeline.py`
+Appendix: useful file references
+-------------------------------
+- Import helper: [import_to_postgres.py](import_to_postgres.py)
+- DB tests: [test_db.py](test_db.py)
+- Docker compose: [docker/docker-compose.yml](docker/docker-compose.yml)
+- Detailed CSV summary: [detailed-report.txt](detailed-report.txt)
 
-Required dashboard panels:
+----
+If you'd like, I can also:
 
-1. Export opportunity ranking (filter by country, product, sector)
-2. Global demand trends (time series by product)
-3. Predicted export growth by market (forecast output)
-4. Priority market map (choropleth by opportunity score)
-5. Historical versus forecasted trade comparison
+- run the notebooks in order and report missing dependencies
+- run `python import_to_postgres.py` to validate DB loading (requires credentials)
+- create a short CONTRIBUTING.md or LICENSE file
 
----
-
-## Existing Data Documentation
-
-For complete raw dataset schema and column-level details, see:
-
-- `data/raw/DATA_DESCRIPTION.md`
+Open a quick next step request or tell me which of the above actions you'd like me to run.

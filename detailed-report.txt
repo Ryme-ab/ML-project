@@ -1,0 +1,105 @@
+Detailed Report: Processed CSVs and Notebooks
+=================================================
+
+
+
+Summary
+-------
+- This report enumerates the processed CSV output files found under `data/processed/` and the main notebooks found under `notebooks/`.
+- For each CSV we list: path, header columns, and 2 sample rows (first rows present in file). Row counts are not computed here.
+
+Processed CSV files
+-------------------
+
+1) data/processed/01_wto_cleaned.csv
+   - Header:
+     country, country_code, partner, product_sector, product_sector_code, indicator, year, value, unit, source
+   - Sample rows:
+     Algeria,Dza,World,Agricultural Products,Ag,Merchandise Imports By Product Group � Annual,2015,10760.831537,Million Us Dollar,wto
+     Algeria,Dza,World,Agricultural Products,Ag,Merchandise Imports By Product Group � Annual,2016,9630.079658,Million Us Dollar,wto
+   - Notes: WTO-derived aggregated import values by product sector and year. Useful for demand indices and market-size features.
+
+2) data/processed/01_worldbank_cleaned.csv
+   - Header:
+     country, country_code, year, NE.IMP.GNFS.ZS, NY.GDP.MKTP.CD, NY.GDP.MKTP.KD.ZG, NY.GDP.PCAP.CD, SP.POP.TOTL, TG.VAL.TOTL.GD.ZS
+   - Sample rows:
+     Afghanistan,AFG,2000.0,,3521418059.92345,,174.930991430166,20130327.0,37.2861153562819
+     Afghanistan,AFG,2001.0,,2813571753.87253,-9.4319740700862,138.706821676113,20284307.0,62.6961085165883
+   - Notes: World Bank indicators (GDP, population, imports as % GDP). Used to build country-level features.
+
+3) data/processed/02_diversification_metrics.csv
+   - Header:
+     year, hhi, shannon_entropy, shannon_entropy_norm
+   - Sample rows:
+     2015,0.2757910220232641,1.8119360779228835,0.6268868608243495
+     2016,0.278156545488718,1.806676837496627,0.6250672885108959
+   - Notes: Aggregate diversification metrics (HHI, Shannon entropy) by year.
+
+4) data/processed/02_worldbank_features.csv
+   - Header:
+     country, country_code, year, NE.IMP.GNFS.ZS, NY.GDP.MKTP.CD, NY.GDP.MKTP.KD.ZG, NY.GDP.PCAP.CD, SP.POP.TOTL, TG.VAL.TOTL.GD.ZS, gdp_growth_lag1, trade_volume_proxy, import_volume_proxy, gdp_per_capita_computed
+   - Sample rows:
+     Aruba,ABW,2000.0,70.6868685663848,1873452513.96648,7.62292064930222,20681.0230269625,90588.0,272.544938392357,,5106000000.000006,1324284916.2011175,20681.023026962514
+     Aruba,ABW,2001.0,69.3943248480407,1896456983.24022,4.1820016304779,20740.1325828172,91439.0,252.839903165503,7.62292064930222,4794999999.999991,1316033519.553071,20740.13258281718
+   - Notes: Feature-engineered World Bank indicators with lag and proxy features. Used in country-level modeling.
+
+5) data/processed/04_master_sector_year.csv
+   - Header: (long schema: year, product_sector, value, global_demand_index, demand_growth_rate_pct, demand_3yr_ma, value_std, ... plus diversity metrics and scaled/robust columns)
+   - Sample rows:
+     2015,Agricultural Products,11007.890104,0.0637251945344016,,11007.890104,-0.214486596819302,-0.2233413351812797,-0.0441786041770094,-0.2139251583715014,0.0525251502936602,...
+     2016,Agricultural Products,9971.365942,0.0646525704601222,-9.41619285991374,10489.628023,-0.2396870165857237,-0.219434025674443,-0.4533523719929068,-0.2267911228036862,0.0475691049664043,...
+   - Notes: Master sector-year table combining demand, growth, moving averages and multiple normalized/scaled variants. Primary input for sector-level opportunity ranking.
+
+6) data/processed/04_master_country_year.csv
+   - Header: (country-level master schema with raw indicators, computed proxies, standardizations, minmax, robust variants, plus diversification metrics)
+   - Sample rows:
+     Aruba,ABW,2000.0,70.6868685663848,1873452513.96648,7.62292064930222,20681.0230269625,90588.0,272.544938392357,,5106000000.000006,1324284916.2011175,20681.02302696252,...
+     Aruba,ABW,2001.0,69.3943248480407,1896456983.24022,4.1820016304779,20740.1325828172,91439.0,252.839903165503,7.62292064930222,4794999999.999991,1316033519.553071,20740.13258281718,...
+   - Notes: Master country-year table used for clustering/classification inputs.
+
+7) data/processed/03_wto_demand_scaled.csv
+   - Header: year, product_sector, value, global_demand_index, demand_growth_rate_pct, demand_3yr_ma, value_std, ... (scaled/minmax/robust variants)
+   - Sample rows:
+     2015,Agricultural Products,11007.890104,0.0637251945344016,,11007.890104,-0.21448659681930202,...
+     2016,Agricultural Products,9971.365942,0.0646525704601222,-9.41619285991374,10489.628023000001,-0.23968701658572375,...
+   - Notes: WTO demand-derived features after scaling; used to compute standardized demand signals.
+
+8) data/processed/03_worldbank_scaled.csv
+   - Header: country, country_code, year, NE.IMP.GNFS.ZS, NY.GDP.MKTP.CD, ..., plus standardized and minmax columns
+   - Sample rows:
+     Aruba,ABW,2000.0,70.6868685663848,1873452513.96648,7.62292064930222,20681.0230269625,90588.0,272.544938392357,...
+     Aruba,ABW,2001.0,69.3943248480407,1896456983.24022,4.1820016304779,20740.1325828172,91439.0,252.839903165503,...
+   - Notes: World Bank features after scaling/standardization.
+
+9) data/processed/03_diversification_scaled.csv
+   - Header: year, hhi, shannon_entropy, shannon_entropy_norm, hhi_std, ... , hhi_robust, shannon_entropy_robust, shannon_entropy_norm_robust
+   - Sample rows:
+     2015,0.2757910220232641,1.8119360779228837,0.6268868608243495,-0.3754541700692546,0.43435838970313567,0.43435838970313545,0.0,1.0,1.0,-1.6380480304097882,1.124702312099824,1.1247023120998212
+     2016,0.278156545488718,1.806676837496627,0.6250672885108959,-0.36390542236892276,0.4239569184546068,0.4239569184546073,0.003266354791765458,0.9970974470400271,0.9970974470400273,-1.3893449024388573,1.0402176532637073,1.0402176532637106
+   - Notes: Diversification metrics scaled for model inputs.
+
+10) data/processed/02_wto_demand_features.csv
+    - Header: year, product_sector, value, global_demand_index, demand_growth_rate_pct, demand_3yr_ma
+    - Sample rows:
+      2015,Agricultural Products,11007.890104,0.06372519453440169,,11007.890104
+      2016,Agricultural Products,9971.365942,0.06465257046012224,-9.41619285991374,10489.628023000001
+    - Notes: Core demand feature table derived from WTO aggregates (pre-scaling).
+
+Notebooks (key files)
+---------------------
+- notebooks/preprocessing/01_data_loading_and_cleaning.ipynb: Raw data ingestion and cleaning (Comtrade, World Bank, WTO). Executable checkpoints exist.
+- notebooks/preprocessing/02_feature_engineering.ipynb: Feature engineering for country and sector-level features.
+- notebooks/preprocessing/03_scaling_and_normalization.ipynb: Scaling, standardization and robust transforms.
+- notebooks/preprocessing/04_master_integration_and_eda.ipynb: Master table integration and exploratory data analysis.
+- notebooks/preporocessing/*_checkpoint.ipynb: Checkpoint notebooks for incremental data loading (typo'd folder name preserved).
+- notebooks/classification/01_product_opportunity_classification.ipynb: Classification workflow to label opportunities.
+- notebooks/classification/02_market_opportunity_classification.ipynb: Market-level classification analysis.
+- notebooks/clustring/clustering_model.ipynb: Clustering experiments and cluster assignment outputs.
+- notebooks/clustring/* output and reports may accompany clustering notebook in `reports/` and `notebooks/.../output/`.
+
+Notes & next steps
+------------------
+- Row counts and full column datatypes were not computed to avoid reading entire CSVs. If you want row counts and schema types, I can run a short script to compute `wc -l` and pandas `read_csv(...,nrows=0).dtypes` for each file.
+- I created this snapshot using the first 30 lines of each CSV to capture headers and initial samples.
+
+End of report

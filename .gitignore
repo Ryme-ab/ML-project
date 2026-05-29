@@ -11,14 +11,33 @@ __pycache__/
 # Jupyter checkpoints
 .ipynb_checkpoints/
 
-# OS/editor artifacts
+# OS / editor artifacts
 .DS_Store
 Thumbs.db
+*.swp
 
 # Build and distribution artifacts
 build/
 dist/
 *.egg-info/
 
-# Specific files
+
 notebooks/clustring/kernel-metadata.json
+
+# Local-only model artifacts
+models/
+*.pkl
+*.joblib
+
+# Secrets — never commit these
+.env
+*.kaggle.json
+**/kaggle.json
+*.pem
+*.key
+
+# Note:
+# `reports/` is intentionally tracked so the deep-exploration summary,
+# tables, slices, and plot analysis are visible to teammates and AI agents.
+# Large binary downloads (e.g. raw Kaggle parquet files) are not stored here.
+>>>>>>> feature/forecasting
